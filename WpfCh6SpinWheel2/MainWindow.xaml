@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfCh6SpinWheel2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCh6SpinWheel2"
+        mc:Ignorable="d"
+        Title="Spin the wheel">
+    <!--  6.9  page 169  -->
+    
+
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="Bisque" />
+            <GradientStop Color="Chartreuse"
+                          Offset="2" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Name="grid"
+          IsManipulationEnabled="True">
+        <!--  Manipulation container  -->
+
+        <Image Name="prizeWheel"
+               RenderTransformOrigin="0.5, 0.5"
+               Source="Images/Plus.bmp"
+               Margin="0 80 0 80">
+            <Image.RenderTransform>
+                <RotateTransform />
+                <!--  Declaring rotate only will boost performance; and is all that is needed.  
+                TODO:  Convert any mousedrag or swipe into wheel rotation. -->
+            </Image.RenderTransform>
+        </Image>
+
+        <Image Source="Images/Plus.bmp"
+               VerticalAlignment="Top"
+               Stretch="None" />
+
+    </Grid>
+</Window>

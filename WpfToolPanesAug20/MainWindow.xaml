@@ -1,0 +1,238 @@
+﻿<Window x:Class="WpfToolPanesAug20.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfToolPanesAug20"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                
+                
+                
+            </Menu>
+            
+            <!--  The bar of buttons docked along the right edge. -->
+            <StackPanel Name="buttonBar"
+                        Orientation="Horizontal"
+                        DockPanel.Dock="Right">
+                <StackPanel.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </StackPanel.LayoutTransform>
+                <Button Name="pane1Button"
+                        MouseEnter="Pane1Button_MouseEnter">
+                    Toolbox
+                </Button>
+                <Button Name="pane2Button"
+                        MouseEnter="Pane2Button_MouseEnter">
+                    Solution Explorer
+                </Button>
+                
+            </StackPanel>
+             
+            
+            <!--  The parent grid of the three child grids; will fill the dockpanel. -->
+            <Grid Name="parentGrid"
+                  Grid.IsSharedSizeScope="True">
+                
+                <!--  Layer 0  -->
+                <Grid Name="layer0"
+                      MouseEnter="Layer0_MouseEnter">
+                    
+                    <!--  Content similar to 5.2-->
+                    <Grid Background="Lavender">
+                        <!--  Define four rows.  -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="Auto"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        
+                        <!--  Define two columns.  -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
+                        <!--  Arrange the children.  -->
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Background="DarkSlateGray"
+                               Foreground="Wheat"
+                               HorizontalContentAlignment="Center">
+                            Start Page
+                        </Label>
+
+                        <GroupBox Grid.Row="1"
+                                  Grid.Column="0"
+                                  Background="Wheat"
+                                  Foreground="DarkSlateGray"
+                                  Header="Start">
+
+                        </GroupBox>
+
+                        <GroupBox Grid.Row="2"
+                                  Grid.Column="0"
+                                  Background="Wheat"
+                                  Foreground="DarkSlateGray"
+                                  Header="Recent">
+
+                        </GroupBox>
+
+                        <GroupBox Grid.Row="3"
+                                  Grid.Column="0"
+                                  Background="Wheat"
+                                  Foreground="DarkSlateGray"
+                                  Header="Options">
+
+                        </GroupBox>
+
+                        <GroupBox Grid.Row="1"
+                                  Grid.RowSpan="3"
+                                  Grid.Column="1"
+                                  Background="Wheat"
+                                  Foreground="DarkSlateGray"
+                                  Header="Get Started">
+
+                            <ListBox>
+                                <ListBoxItem>Article  #1</ListBoxItem>
+                                <ListBoxItem>Article  #2</ListBoxItem>
+                                <ListBoxItem>Article  #3</ListBoxItem>
+                                <ListBoxItem>Article  #4</ListBoxItem>
+                            </ListBox>
+
+                        </GroupBox>
+
+                    </Grid>
+
+                </Grid>
+
+                <!--  Layer  1  -->
+                <Grid Name="layer1"
+                      Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition SharedSizeGroup="column1"
+                                          Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <!--   Column 0 is empty, but column 1 contains a Grid and a GridSplitter.  -->
+                    <Grid Grid.Column="1"
+                          MouseEnter="Pane1Button_MouseEnter"
+                          Background="{DynamicResource 
+                        {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <!--  Row 0 contains a header, and 
+                        row 1 contains pane specific content.  -->
+                        <DockPanel Grid.Row="0">
+                            <Button Name="pane1Pin"
+                                    Width="32"
+                                    DockPanel.Dock="Right"
+                                    Click="Pane1Pin_Click"
+                                    Background="Azure">
+                                <Image Name="pane1PinImage"
+                                       Source="Images/Pointer32.png" />
+                            </Button>
+                            <TextBlock Padding="8"
+                                       TextTrimming="CharacterEllipsis"
+                                       DockPanel.Dock="Left">
+                                Toolbox
+                            </TextBlock>
+                            <!--
+                                       Foreground="{DynamicResource
+                                        {x:Static SystemColors.ActiveCaptionTextBrushKey`}}"-->
+                        </DockPanel>
+                        <!--  Pane specific content fills row 1.  -->
+
+                    </Grid>
+                    <GridSplitter Width="5"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Left" />
+                </Grid>
+                
+                
+
+                <!--  Layer  2  -->
+                <Grid Name="layer2"
+                      Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition SharedSizeGroup="column2"
+                                          Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <!--   Column 0 is empty, but column 1 contains a Grid and a GridSplitter.  -->
+                    <Grid Grid.Column="1"
+                          MouseEnter="Pane2Button_MouseEnter"
+                          Background="{DynamicResource 
+                        {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <!--  Row 0 contains a header, and 
+                        row 1 contains pane specific content.  -->
+                        <DockPanel Grid.Row="0">
+                            <Button Name="pane2Pin"
+                                    Width="32"
+                                    DockPanel.Dock="Right"
+                                    Click="Pane1Pin_Click"
+                                    Background="Azure">
+                                <Image Name="pane2PinImage"
+                                       Source="Images/Pointer32.png" />
+                            </Button>
+                            <TextBlock Padding="8"
+                                       TextTrimming="CharacterEllipsis">
+                                <!--
+                                       Foreground="{DynamicResource
+                                        {x:Static SystemColors.ActiveCaptionTextBrushKey`}}"
+                                       DockPanel.Dock="Left"-->
+                                Toolbox
+                            </TextBlock>
+                        </DockPanel>
+                        <!--  Pane specific content fills row 1.  -->
+
+                    </Grid>
+                    <GridSplitter Width="5"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Left" />
+                </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </Grid>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </DockPanel>
+        
+    </Grid>
+</Window>

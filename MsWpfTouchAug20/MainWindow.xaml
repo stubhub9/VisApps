@@ -1,0 +1,61 @@
+﻿<Window x:Class="MsWpfTouchAug20.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MsWpfTouchAug20"
+        mc:Ignorable="d"
+        Title="Move, Size, and Rotate the Square"
+        WindowState="Maximized"
+        
+        ManipulationStarting="Window_ManipulationStarting"
+        ManipulationDelta="Window_ManipulationDelta"
+        ManipulationInertiaStarting="Window_InertiaStarting">
+
+    <!--This markup creates a simple application that contains a red Rectangle on a Canvas. 
+    The IsManipulationEnabled property of the Rectangle is set to true so that it will receive manipulation events.
+    The application subscribes to the ManipulationStarting, ManipulationDelta, and ManipulationInertiaStarting events. 
+    These events contain the logic to move the Rectangle when the user manipulates it.-->
+
+    <Window.Resources>
+        <!--The movement, rotation, and size of the Rectangle is 
+        specified by its RenderTransform.-->
+        <MatrixTransform x:Key="InitialMatrixTransform">
+            
+            <MatrixTransform.Matrix>
+                <Matrix OffsetX="200"
+                        OffsetY="200" />
+            </MatrixTransform.Matrix>
+        </MatrixTransform>
+
+    </Window.Resources>
+    <!--To test the application, try the following manipulations. 
+    Note that you can do more than one of the following at the same time.
+
+To move the Rectangle, put a finger on the Rectangle 
+    and move the finger across the screen.
+
+To resize the Rectangle, put two fingers on the Rectangle 
+    and move the fingers closer together or farther apart from each other.
+
+To rotate the Rectangle, put two fingers on the Rectangle 
+    and rotate the fingers around each other.
+
+To cause inertia, quickly raise your fingers from the screen 
+    as you perform the previous manipulations. 
+    The Rectangle will continue to move, resize, or rotate 
+    for a few seconds before it stops.-->
+    <Canvas>
+        <Rectangle Fill="Red"
+                   Name="manRect"
+                   Width="200"
+                   Height="200"
+                   
+                   
+                   RenderTransform="{StaticResource InitialMatrixTransform}"
+                   
+                   IsManipulationEnabled="true" />
+        
+        
+    </Canvas>
+</Window >
